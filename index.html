@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PARGATZ - INICIO</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="img/logo-pargatz.jpg" alt="Logo PARGATZ" class="logo-img">
+        </a>
+      </div>
+
+      <!-- Botón hamburguesa -->
+      <div class="menu-toggle">&#9776;</div>
+
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html" class="active">Inicio</a></li>
+          <li><a href="coleccion.html">Colección</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / Sección principal -->
+  <section class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-overlay"></div> <!-- cortina transparente -->
+    <div class="hero-content">
+        <h1>Bienvenido a PARGATZ</h1>
+        <p>Descubre tu estilo con gafas premium</p>
+        <a href="coleccion.html" class="btn btn-primary">Ver catálogo</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <p>&copy; 2025 PARGATZ. TODOS LOS DERECHOS RESERVADOS.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Video hero
+    document.addEventListener("DOMContentLoaded", () => {
+      const heroBg = document.querySelector(".hero-background");
+      if (heroBg) {
+        const video = document.createElement("video");
+        video.src = "img/videopargatz.mp4";
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        heroBg.appendChild(video);
+      }
+
+      // Menu hamburguesa
+      const menuToggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".site-nav");
+      menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
+    });
+  </script>
+
+</body>
+</html>
