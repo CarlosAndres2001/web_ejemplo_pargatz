@@ -6,6 +6,7 @@
   <title>PARGATZ - INICIO</title>
 
   <!-- Fuentes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -20,7 +21,6 @@
           <img src="img/logo-pargatz.jpg" alt="Logo PARGATZ" class="logo-img">
         </a>
       </div>
-
       <!-- Botón hamburguesa -->
       <div class="menu-toggle">&#9776;</div>
 
@@ -34,24 +34,31 @@
       </nav>
     </div>
   </header>
+<!-- Hero / Sección principal -->
+  <div class="hero-wrapper"> <!-- contenedor padre -->
+    <section class="herone">
+      <div class="hero-left">
+          <div class="hero-content">
+              <h1>PARGATZ</h1>
+              <p>MAGNETIC MOOD</p>
+              <a href="coleccion.html" class="btn btn-primary">Ver catálogo</a>
+          </div>
+      </div>
+      <div class="hero-right"></div>
+    </section>
 
-  <!-- Hero / Sección principal -->
-  <section class="hero">
-    <div class="hero-background"></div>
-    <div class="hero-overlay"></div> <!-- cortina transparente -->
-    <div class="hero-content">
-        <h1>PARGATZ</h1>
-        <p>Descubre tu estilo con gafas premium</p>
-        <a href="coleccion.html" class="btn btn-primary">Ver catálogo</a>
-    </div>
-  </section>
+    <section class="hero">
+      <div class="hero-background"></div>
+      <div class="hero-overlay"></div> <!-- cortina transparente -->
+    </section>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <!-- Columna 1 -->
       <div class="footer-about">
-        <img src="static/img/logo-pargatz.png" alt="Pargatz Logo" class="footer-logo">
+        <img src="img/logo-pargatz.jpg" alt="Pargatz Logo" class="footer-logo">
         <p>
           Explora un mundo de versatilidad con nuestras lentes magnéticas, diseñadas para adaptarse a tu estilo en segundos. 
           Con discretos imanes en la montura, cambia de look fácilmente sin sacrificar la calidad visual. 
@@ -90,24 +97,66 @@
 
     <div class="footer-bottom">
       <p>© 2025 Pargatz - Gafas Magnéticas Graduadas.</p>
-      <div class="footer-socials">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
+      <!-- Redes Sociales -->
+      <div class="social-icons">
+        <div class="icon-content" data-social="facebook">
+          <a href="#" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+            <span class="tooltip">Facebook</span>
+          </a>
+        </div>
+        <div class="icon-content" data-social="instagram">
+          <a href="#" target="_blank">
+            <i class="fab fa-instagram"></i>
+            <span class="tooltip">Instagram</span>
+          </a>
+        </div>
+        <div class="icon-content" data-social="youtube">
+          <a href="#" target="_blank">
+            <i class="fab fa-youtube"></i>
+            <span class="tooltip">YouTube</span>
+          </a>
+        </div>
+        <div class="icon-content" data-social="linkedin">
+          <a href="#" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+            <span class="tooltip">LinkedIn</span>
+          </a>
+        </div>
       </div>
+
     </div>
+
   </footer>
 
 
   <!-- JS -->
   <script>
+    const herone = document.querySelector('.herone');
+    const hero = document.querySelector('.hero');
+
+    // empezamos mostrando .herone
+    herone.classList.add('active');
+
+    function alternarHeroes() {
+      if (herone.classList.contains('active')) {
+        herone.classList.remove('active');
+        hero.classList.add('active');
+      } else {
+        hero.classList.remove('active');
+        herone.classList.add('active');
+      }
+    }
+
+    // Alterna cada 5 segundos (5000ms)
+    setInterval(alternarHeroes, 5000);
+
     // Video hero
     document.addEventListener("DOMContentLoaded", () => {
       const heroBg = document.querySelector(".hero-background");
       if (heroBg) {
         const video = document.createElement("video");
-        video.src = "img/videopargatz.mp4";
+        video.src = "img/videopargatz2.mp4";
         video.autoplay = true;
         video.muted = true;
         video.loop = true;
