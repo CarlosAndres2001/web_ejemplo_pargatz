@@ -1,6 +1,6 @@
 /* ==========================
-   RESET BÁSICO
-   ========================== */
+    RESET BÁSICO
+    ========================== */
 * {
   margin: 0;
   padding: 0;
@@ -8,14 +8,26 @@
 }
 
 /* ==========================
-   ESTILOS GLOBALES
-   ========================== */
+    ESTILOS GLOBALES
+    ========================== */
+:root {
+  --bg-color: #fff;
+  --text-color: #000;
+  --accent-color: #d4af37;
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #000;
+  --text-color: #fff;
+  /* El color de acento se mantiene para ser visible en ambos temas */
+}
+
 body {
   font-family: Arial, sans-serif;
   letter-spacing: 1px;
   line-height: 1.6;
-  color: #000;
-  background-color: #fff;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
 /* Títulos */
@@ -34,97 +46,126 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =================
- HEADER / BARRA SUPERIOR
+  HEADER / BARRA SUPERIOR
   ================= */
-.site-header {
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-  padding: 00px 20px;
-  background: black;
-}
-
-.header-container {
+/* ===== NAVBAR ===== */
+.navbar {
   display: flex;
-  justify-content: center; /* centra el logo */
+  justify-content: space-between;
   align-items: center;
-  position: relative;
+  /* Fija el fondo y color para un contraste fuerte fijo, o usa las variables si quieres que el navbar cambie.
+     Lo dejaré como estaba originalmente para mantener el contraste fijo, pero lo adapto a las variables para el tema. */
+  background: var(--text-color); /* Lo opuesto al fondo del body */
+  color: var(--bg-color);        /* Lo opuesto al color de texto del body */
+  padding: 15px 40px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-/* Logo */
-.logo img.logo-img {
-  max-height: 50px;
-  height: auto;
-  width: auto;
-}
-
-/* Menú de navegación oculto siempre */
-.site-nav {
-  display: none;
-  position: absolute;
-  top: 20px; /* debajo del header */
-  right: 20px;
-  background: black;
-  flex-direction: column;
-  gap: 15px;
-  text-align: center;
-  padding: 20px 0;
-  z-index: 9;
-}
-
-.site-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.site-nav a {
+.navbar-left .contact-link {
+  color: var(--bg-color); /* Color opuesto al fondo del navbar */
+  font-size: 0.9rem;
   text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+}
+
+.navbar-center .logo-img {
+  max-height: 45px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-right i,
+.navbar-right .menu-toggle {
+  cursor: pointer;
   font-size: 1rem;
-  color: #fff;
+  text-transform: uppercase;
+  color: var(--bg-color); /* Color de texto del navbar */
+}
+
+.navbar-right .menu-toggle {
+  font-weight: bold;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100%;
+  background: var(--bg-color); /* Usa el color de fondo del tema */
+  color: var(--text-color);    /* Usa el color de texto del tema */
+  padding: 40px 30px;
+  transition: right 0.3s ease;
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color); /* Usa el color de texto del tema */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 60px 0 0 0;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: var(--text-color); /* Usa el color de texto del tema */
   transition: color 0.3s;
 }
 
-.site-nav a:hover,
-.site-nav a.active {
-  color: #d4af37;
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  color: #555; /* Puede necesitar ajuste si el tema oscuro no lo hace visible */
 }
 
-/* Mostrar menú al activar clase .active */
-.site-nav.active {
-  display: flex;
+/* Manejo del transform para el sidebar (mejor moverlo a la parte de JavaScript) */
+#sidebar.active {
+  transform: translateX(0);
 }
 
-/* Botón hamburguesa siempre visible */
-.menu-toggle {
-  display: block;
-  position: absolute;
-  right: 20px;
-  font-size: 2rem;
-  color: #fff;
-  cursor: pointer;
-  user-select: none;
+#sidebar {
+  transform: translateX(100%); /* Escondido por defecto a la derecha */
+  right: 0; /* Asegurar que la transición sea desde la derecha */
+  transition: transform 0.3s ease;
 }
 
 /* ==========================
-   HERO / SECCIÓN PRINCIPAL
-   ========================== */
+    HERO / SECCIÓN PRINCIPAL
+    ========================== */
 .hero {
   position: relative;
   width: 100%;
-  height: 630px; /* <-- Aquí se configura la altura del hero */
+  height: 820px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #fff;
+  color: #fff; /* Se mantiene en blanco para el texto sobre el video */
   overflow: hidden;
 }
 
@@ -165,17 +206,130 @@ h1, h2, h3, h4, h5, h6 {
 .hero-content h1 {
   font-size: 3rem;
   margin-bottom: 20px;
+  color: #fff; /* Asegura color blanco en el hero */
 }
 
 .hero-content p {
   font-size: 1.2rem;
   margin-bottom: 30px;
-  color: #d4af37;
+  color: var(--accent-color);
+}
+/* ==========================
+    SEGUNDA OPCION HERO
+    ========================== */
+
+.herone {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 820px;
+  overflow: hidden;
+}
+
+.herone::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* degradado horizontal: negro 70% a transparente 30% */
+  background: linear-gradient(to right, rgba(1,1,1,1) 55%, rgba(1,1,1,0) 100%);
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Lado izquierdo: gradiente negro y contenido */
+.hero-left {
+  flex: 1; /* ocupa mitad izquierda */
+  background: var(--text-color); /* Fondo basado en el tema */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 50px;
+  color: var(--bg-color); /* Texto opuesto al fondo */
+  z-index: 101;
+}
+.hero-left .hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--bg-color); /* Título del hero opuesto al fondo */
+}
+
+.hero-left .hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  color: var(--accent-color);
+}
+
+/* Lado derecho: imagen */
+.hero-right {
+  flex: 1; /* sigue ocupando la mitad del contenedor */
+  background: url('img/back2.jpg') no-repeat center top; /* centrar arriba */
+  background-size: contain; /* aquí se ajusta la imagen para que quepa completa */
+  background-color: var(--text-color); /* fallback si la imagen no carga */
+  display: flex; /* por si necesitás centrar algo dentro */
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Botón */
+.hero-left .btn-primary {
+  background-color: var(--bg-color); /* Invertido para que sea visible en el fondo text-color */
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
+}
+
+.hero-left .btn-primary:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: 2px solid var(--bg-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .herone {
+    flex-direction: column;
+    height: auto;
+  }
+  .hero-left, .hero-right { flex: none; width: 100%; height: 300px; }
+  .hero-left { padding: 20px; text-align: center; }
 }
 
 /* ==========================
-   BOTONES
-   ========================== */
+    HEROES CON FADE (NO FIXED)
+    ========================== */
+/* Contenedor padre relativo */
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  height: 820px; /* o el alto que quieras */
+  overflow: hidden; /* para que no se vea nada fuera del contenedor */
+}
+
+/* Heroes superpuestos dentro del contenedor */
+.herone, .hero {
+  position: absolute; /* se superponen dentro del contenedor */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.herone.active, .hero.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+/* ==========================
+    BOTONES
+    ========================== */
 .btn {
   display: inline-block;
   padding: 12px 30px;
@@ -186,24 +340,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background-color: #000;
-  color: #fff;
-  border: 2px solid #fff;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: 2px solid var(--text-color); /* Usar text-color para el borde */
 }
 
 .btn-primary:hover {
-  background-color: #fff;
-  color: #000;
-  border: 2px solid #000;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
 }
 
 /* ==========================
-   PRODUCTOS DESTACADOS
-   ========================== */
+    PRODUCTOS DESTACADOS
+    ========================== */
 .featured-products {
   padding: 60px 0;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--bg-color); /* <--- AJUSTADO: Usa el color de fondo del tema */
+  color: var(--text-color);    /* <--- AJUSTADO: Usa el color de texto del tema */
 }
 
 .featured-products h2 {
@@ -219,8 +373,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-card {
-  background-color: #000;
-  color: #fff;
+  /* <--- AJUSTADO: Invertir colores para que resalte sobre el fondo */
+  background-color: var(--text-color);
+  color: var(--bg-color);
   border-radius: 6px;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -239,28 +394,29 @@ h1, h2, h3, h4, h5, h6 {
 .product-card h3 {
   font-size: 1.4rem;
   margin: 15px;
-  color: #d4af37;
+  color: var(--accent-color);
 }
 
 .product-card p {
   margin: 0 15px 15px;
-  color: #fff;
+  color: var(--bg-color); /* El color de fondo de la aplicación es el color de texto de la tarjeta */
 }
 
 /* ==========================
-   NOSOTROS
-   ========================== */
+    NOSOTROS
+    ========================== */
 .about-us {
   padding: 60px 0;
-  background-color: #000;
-  color: #fff;
+  /* <--- AJUSTADO: Invertir los colores del body */
+  background-color: var(--text-color);
+  color: var(--bg-color);
   text-align: center;
 }
 
 .about-us h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #d4af37;
+  color: var(--accent-color);
 }
 
 .about-us p {
@@ -269,20 +425,135 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.1rem;
   line-height: 1.8;
 }
+/* ==========================
+    ESTRUCTURA - SECCIÓN NOSOTROS
+    ========================== */
+
+/* Contenedor de las filas de imagen/texto */
+.section-about {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px; /* Espacio entre cada sección de "Bienvenido" e "Historia" */
+    text-align: left; /* Restablecer la alineación a la izquierda dentro de los divs */
+}
+
+/* Invertir el orden para la segunda sección (Historia) */
+.section-about:nth-child(2) {
+    flex-direction: row-reverse;
+}
+
+.section-about .text {
+    flex: 1;
+    padding: 0 40px;
+}
+
+.section-about .image {
+    flex: 1;
+    max-height: 400px; /* Limita la altura de la imagen */
+    overflow: hidden;
+    border-radius: 8px; /* Borde suave */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.section-about img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Misión y Visión - Estructura de dos columnas */
+.mission-vision {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    text-align: left; /* Restablecer alineación */
+}
+
+.mission-vision .mission,
+.mission-vision .vision {
+    flex: 1;
+    padding: 30px;
+    border: 1px solid var(--bg-color); /* Borde que se invierte con el tema */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    /* Fondo del mission/vision ligeramente diferente al fondo de la sección */
+    background-color: rgba(255, 255, 255, 0.05); /* En modo oscuro */
+}
+:root[data-theme="dark"] .mission-vision .mission,
+:root[data-theme="dark"] .mission-vision .vision {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+:root .mission-vision .mission,
+:root .mission-vision .vision {
+    background-color: rgba(0, 0, 0, 0.03); /* En modo claro */
+}
+
+
+/* RESPONSIVE para la sección Nosotros */
+@media (max-width: 992px) {
+    .section-about, 
+    .section-about:nth-child(2) {
+        flex-direction: column; /* Apilar en dispositivos pequeños */
+    }
+    .section-about .text {
+        padding: 20px 0;
+    }
+    .mission-vision {
+        flex-direction: column;
+    }
+}
+/* ------------------------------------- */
+/* ESTILOS PARA EL SCROLL REVEAL (LUJO) */
+/* ------------------------------------- */
+
+/* 1. CLASE BASE: Oculta los elementos y define la transición */
+.scroll-reveal {
+    opacity: 0;
+    /* Usa cubic-bezier para un movimiento más suave y profesional */
+    transition: opacity 0.9s ease-out, transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 2. ESTADOS INICIALES (Mueve los elementos fuera de vista) */
+/* Efecto de aparecer desde la izquierda/derecha con movimiento horizontal */
+.slide-from-left {
+    transform: translateX(-80px); /* Más desplazamiento para un efecto más claro */
+}
+
+.slide-from-right {
+    transform: translateX(80px);
+}
+
+/* Efecto de aparecer desde abajo (ideal para títulos o bloques centrales) */
+.slide-from-bottom {
+    transform: translateY(30px);
+}
+
+/* 3. ESTADO ACTIVO (DENTRO DE VISTA) - Añadido por JavaScript */
+.scroll-reveal.reveal {
+    opacity: 1;
+    transform: none; /* Regresa a la posición original (0,0) */
+}
+
+
 
 /* ==========================
-   CONTACTO
-   ========================== */
+    CONTACTO
+    ========================== */
 .contact-section {
   padding: 60px 0;
-  background-color: #fff;
-  color: #000;
+  /* CAMBIO: Usar var(--text-color) como fondo. En modo oscuro es blanco, en claro es negro. */
+  background-color: var(--text-color);
+  /* CAMBIO: Usar var(--bg-color) como color de texto. Opuesto al fondo. */
+  color: var(--bg-color);
 }
 
 .contact-section h2 {
   text-align: center;
   margin-bottom: 30px;
   font-size: 2.5rem;
+  /* CAMBIO: Usar var(--bg-color) para los títulos principales en esta sección. */
+  color: var(--bg-color);
 }
 
 .contact-form {
@@ -300,56 +571,63 @@ h1, h2, h3, h4, h5, h6 {
 .contact-form input,
 .contact-form textarea {
   padding: 10px;
-  border: 1px solid #333;
+  /* El borde usa el color de texto de la sección (var(--bg-color)) */
+  border: 1px solid var(--bg-color);
   border-radius: 4px;
   font-size: 1rem;
+  /* Los inputs deben tener el color de fondo (negro en dark mode) y texto opuesto (blanco) */
+  background-color: var(--text-color);
+  color: var(--bg-color);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: #d4af37;
+  border-color: var(--accent-color);
 }
 
 .contact-form button {
   align-self: center;
   padding: 12px 30px;
-  background-color: #000;
-  color: #fff;
-  border: 2px solid #000;
+  /* El botón usa los colores de fondo/texto del tema general para contrastar en la sección */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
   cursor: pointer;
   border-radius: 4px;
 }
 
 .contact-form button:hover {
-  background-color: #fff;
-  color: #000;
-  border: 2px solid #000;
+  /* Hover invierte el botón a los colores de la sección de contacto */
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: 2px solid var(--bg-color);
 }
-
 /* ==========================
-   FOOTER
-   ========================== */
+    FOOTER
+    ========================== */
 .site-footer {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--text-color);
+  color: var(--bg-color);
   padding: 30px 0;
   text-align: center;
 }
 
 .site-footer p {
   font-size: 0.9rem;
-  color: #d4af37;
+  color: var(--accent-color);
 }
 
 /* ==========================
-   CARRUSEL / SLIDER
-   ========================== */
+    CARRUSEL / SLIDER
+    ========================== */
 .container-carrossel {
   position: relative;
   overflow: hidden;
   margin: 3rem 0;
   padding: 1rem 0;
+  /* Asegura que el contenedor del carrusel respete el fondo del tema */
+  background-color: var(--bg-color);
 }
 
 .carrossel-loop {
@@ -360,11 +638,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .carrossel-item {
   flex: 0 0 auto;
-  width: 450px;   /* <-- Aquí se configura la anchura */
-  height: 350px;  /* <-- Aquí se configura la altura del carrusel */
+  width: 450px; 
+  height: 350px; 
   border-radius: 20px;
   overflow: hidden;
-  background: #fff;
+  background: var(--bg-color);
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
   display: flex;
   align-items: center;
@@ -372,12 +650,6 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.carrossel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .carrossel-item:hover {
@@ -391,7 +663,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   background: rgba(0,0,0,0.6);
-  color: #fff;
+  color: var(--bg-color);
   padding: 1rem;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -408,8 +680,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================
-   RESPONSIVE / MÓVILES
-   ========================== */
+    RESPONSIVE / MÓVILES
+    ========================== */
 @media (max-width: 1200px) { .carrossel-item { width: 220px; height: 320px; } }
 @media (max-width: 992px) { .carrossel-item { width: 180px; height: 260px; } }
 @media (max-width: 768px) {
@@ -422,7 +694,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 70px;
     left: 0;
     width: 100%;
-    background: #000;
+    background: var(--text-color);
     display: none;
     flex-direction: column;
     align-items: center;
@@ -437,10 +709,12 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 480px) { .carrossel-item { width: 120px; height: 180px; } }
 
 /* ==========================
-   FOOTER DETALLADO
-   ========================== */
+    FOOTER DETALLADO
+    ========================== */
 .footer {
-  background: #000;
+  /* <--- AJUSTADO: Fondo fijo en el color opuesto al body para contraste */
+  background: var(--text-color);
+  border-top: 1px solid #393636;
   color: #eee;
   font-family: 'Poppins', sans-serif;
   padding: 30px 20px 20px;
@@ -448,19 +722,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  max-width: 1300px;
+  max-width: 1100px;
   margin: auto;
 }
 
 .footer-logo { width: 140px; margin-bottom: 15px; }
 
-.footer h4 { color: #fff; margin-bottom: 15px; font-size: 16px; font-weight: 600; }
+.footer h4 { color: var(--bg-color); margin-bottom: 15px; font-size: 16px; font-weight: 600; }
 
 .footer p, .footer a { font-size: 14px; line-height: 1.6; color: #ccc; }
 
-.footer a:hover { color: #fff; }
+.footer a:hover { color: #ffffff; }
 
 .footer-links ul { list-style: none; padding: 0; }
 
@@ -468,29 +742,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-links ul li a { text-decoration: none; transition: color 0.3s; }
 
-.footer-subscribe form { display: flex; flex-direction: column; gap: 10px; }
-
-.footer-subscribe input {
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-}
-
-.footer-subscribe button {
-  background: #f1c40f;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.footer-subscribe button:hover { background: #d4ac0d; }
-
 .footer-bottom {
   margin-top: 20px;
-  border-top: 1px solid #333;
+  border-top: 1px solid #575252;
   padding-top: 15px;
   text-align: center;
   display: flex;
@@ -546,110 +800,193 @@ h1, h2, h3, h4, h5, h6 {
 .icon-content[data-social="linkedin"] a:hover { background: #0a66c2; }
 
 
-/* ==========================
-   SEGUNDA OPCION HERO
-   ========================== */
 
-.herone {
-  position: relative;
+/* ==========================
+    SECCIÓN TESLA RENOVADA - COLUMNAS 50/50
+=========================== */
+.tesla-inspired-section {
+  /* <--- AJUSTADO: Invertir los colores del body */
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  min-height: 100vh;
   display: flex;
-  width: 100%;
-  height: 730px;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
   overflow: hidden;
 }
 
-.herone::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+.tesla-content-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ----- TÍTULO ----- */
+.tesla-main-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 4.5rem;
+  color: var(--bg-color); /* <--- AJUSTADO: Opuesto al fondo de la sección */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: start;
+}
+
+/* ----- GRID 50/50 ----- */
+.tesla-grid-container {
+  display: flex;
+  width: 100%;
+  gap: 40px;
+}
+
+/* ----- COLUMNA IZQUIERDA: CARRUSEL ----- */
+.tesla-left-column {
+  flex: 0 0 50%;
+  display: flex;
+  height: 400px;
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #111; /* Color fijo para la caja de la imagen */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+
+.tesla-left-column:hover {
+  transform: translateY(-5px);
+}
+
+.tesla-product-display img {
   width: 100%;
   height: 100%;
-  /* degradado horizontal: negro 70% a transparente 30% */
-  background: linear-gradient(to right, rgba(1,1,1,1) 49%, rgba(1,1,1,0) 100%);
-  z-index: 100;
-  pointer-events: none;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
 }
 
-/* Lado izquierdo: gradiente negro y contenido */
-.hero-left {
-  flex: 1; /* ocupa mitad izquierda */
-  background: rgb(0, 0, 0);
+.tesla-product-display img:hover {
+  transform: scale(1.05);
+}
+
+/* ----- COLUMNA DERECHA: LISTA DE OPCIONES ----- */
+.tesla-right-column {
+  flex: 0 0 50%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding-left: 50px;
-  color: #fff;
-  z-index: 101;
+  gap: 15px;
 }
 
-.hero-left .hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+.tesla-model-nav {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.hero-left .hero-content p {
-  font-size: 1.3rem;
-  margin-bottom: 30px;
-  color: #d4af37;
+.tesla-nav-link {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6); /* Color por defecto en esta sección oscura */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-/* Lado derecho: imagen */
-.hero-right {
-  flex: 1; /* ocupa mitad derecha */
-  background: url('img/back2.jpg') no-repeat center center;
-  background-size: cover;
-  background-color: linear-gradient(rgb(1, 1, 1), rgba(248, 246, 246, 0));
-}
+.tesla-nav-link:hover { color: var(--bg-color); } /* color hover es el color de fondo del tema */
+.tesla-nav-link.active { color: var(--accent-color); font-weight: 700; }
 
-/* Botón */
-.hero-left .btn-primary {
-  background-color: #000;
-  color: #fff;
-  border: 2px solid #fff;
-}
-
-.hero-left .btn-primary:hover {
-  background-color: #fff;
-  color: #000;
-  border: 2px solid #000;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .herone {
-    flex-direction: column;
-    height: auto;
-  }
-  .hero-left, .hero-right { flex: none; width: 100%; height: 300px; }
-  .hero-left { padding: 20px; text-align: center; }
-}
-/* ==========================
-   HEROES CON FADE (NO FIXED)
-   ========================== */
-/* Contenedor padre relativo */
-.hero-wrapper {
+/* ----- CARRUSEL ----- */
+.tesla-carousel {
   position: relative;
   width: 100%;
-  height: 730px; /* o el alto que quieras */
-  overflow: hidden; /* para que no se vea nada fuera del contenedor */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
-/* Heroes superpuestos dentro del contenedor */
-.herone, .hero {
-  position: absolute; /* se superponen dentro del contenedor */
-  top: 0;
-  left: 0;
+.carousel-images img {
+  display: none;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  pointer-events: none;
-  z-index: 0;
+  object-fit: cover;
+  object-position: center;
 }
 
-.herone.active, .hero.active {
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 1;
+.carousel-images img.active { display: block; }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: var(--bg-color); /* Blanco en ambos temas para que sea visible */
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.carousel-btn:hover { background: rgba(212,175,55,0.8); }
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* ==========================
+    RESPONSIVE
+=========================== */
+@media (max-width: 992px) {
+  .tesla-grid-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .tesla-left-column, .tesla-right-column { flex: 1 1 100%; max-width: 450px; }
+  .tesla-product-display { height: 300px; }
+  .tesla-nav-link { font-size: 0.9rem; text-align: center; }
+  .tesla-main-title { font-size: 3.5rem; }
+}
+
+@media (max-width: 576px) {
+  .tesla-left-column { height: 250px; border-radius: 15px; }
+  .tesla-product-display { height: 100%; }
+  .tesla-main-title { font-size: 2.5rem; }
+  .tesla-nav-link { font-size: 0.8rem; text-align: center; }
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+  color: var(--bg-color); /* mismo color que los íconos del navbar */
+  font-size: 18px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg);
+  color: var(--accent-color);
+}
+.close-sidebar {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  color: var(--text-color); /* usa el color de texto del sidebar */
+  font-size: 18px;
 }

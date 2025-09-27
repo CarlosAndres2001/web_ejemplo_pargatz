@@ -1,0 +1,95 @@
+  <!-- Fuentes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<!-- ====== NAVBAR SUPERIOR ====== -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <a href="#" class="contact-link">+ Contáctanos</a>
+    </div>
+
+    <div class="navbar-center">
+      <a href="index.html">
+        <img src="img/logo-pargatz.jpg" alt="Logo PARGATZ" class="logo-img">
+      </a>
+    </div>
+
+    <div class="navbar-right">
+      <i class="fa-solid fa-search"></i>
+
+      <!-- Botón toggle tema -->
+      <button id="theme-toggle" class="theme-toggle">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+      <span class="menu-toggle">
+        <i class="fa-solid fa-bars"></i> MENU
+      </span>
+    </div>
+  </header>
+    <!-- ====== SIDEBAR MENU ====== -->
+  <aside class="sidebar" id="sidebar">
+    <div id="closeSidebar" class="close-sidebar">
+        <i class="fa-solid fa-arrow-left"></i> <!-- icono de flecha -->
+    </div>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="coleccion.html">Colección</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </aside>
+
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const closeSidebar = document.getElementById("closeSidebar");
+
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.add("active");
+    });
+
+    closeSidebar.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+    });
+</script>
+  
+<script>
+  const toggleBtn = document.getElementById("theme-toggle");
+  const icon = toggleBtn.querySelector("i");
+
+  // Función para aplicar tema
+  function setTheme(dark) {
+    if(dark){
+      document.documentElement.setAttribute("data-theme", "dark");
+      icon.classList.remove("fa-moon");
+      icon.classList.add("fa-sun");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      icon.classList.remove("fa-sun");
+      icon.classList.add("fa-moon");
+      localStorage.setItem("theme", "light");
+    }
+  }
+
+  // Al cargar la página, aplicamos tema según preferencia guardada o por defecto oscuro
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    if(savedTheme === "light"){
+      setTheme(false);
+    } else {
+      setTheme(true); // oscuro por defecto
+    }
+  });
+
+  // Cambio manual al hacer click
+  toggleBtn.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    setTheme(!isDark);
+  });
+</script>
