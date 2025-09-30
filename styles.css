@@ -14,6 +14,7 @@
     --bg-color: #fff;
     --text-color: #000;
     --accent-color: #d4af37;
+    --ptext-color: #555;
 }
 
 :root[data-theme="dark"] {
@@ -216,6 +217,11 @@ h1, h2, h3, h4, h5, h6 {
     object-position: center;
 }
 
+.logo-img-hero {
+    max-height: 80px;
+    margin-bottom: 20px;
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -233,11 +239,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #fff; 
-}
 
 .hero-content p {
     font-size: 1.2rem;
@@ -264,7 +265,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(1,1,1,1) 55%, rgba(1,1,1,0) 100%);
+    background: linear-gradient(to right, rgba(1,1,1,1) 20%, rgba(1,1,1,0) 100%);
     z-index: 100;
     pointer-events: none;
 }
@@ -295,7 +296,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Lado derecho: imagen */
 .hero-right {
     flex: 1; 
-    background: url('img/back2.jpg') no-repeat center top; 
+    background: url('img/back2-remove.png') no-repeat center top; 
     background-size: contain; 
     background-color: var(--text-color); 
     display: flex; 
@@ -390,56 +391,6 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid var(--text-color);
 }
 
-/* ==========================
-    PRODUCTOS DESTACADOS
-    ========================== */
-.featured-products {
-    padding: 60px 0;
-    background-color: var(--bg-color); 
-    color: var(--text-color); 
-}
-
-.featured-products h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-}
-
-.products-grid {
-    /* --- FIX RESPONSIVO: Minmax para que las tarjetas se ajusten --- */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.product-card {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    border-radius: 6px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-}
-
-.product-card img {
-    width: 100%;
-    display: block;
-}
-
-.product-card h3 {
-    font-size: 1.4rem;
-    margin: 15px;
-    color: var(--accent-color);
-}
-
-.product-card p {
-    margin: 0 15px 15px;
-    color: var(--bg-color); 
-}
 
 /* ==========================
     NOSOTROS Y ESTRUCTURA (Columna 50/50)
@@ -583,7 +534,10 @@ h1, h2, h3, h4, h5, h6 {
     ========================== */
 .contact-section {
     padding: 60px 0;
-    background-color: var(--text-color);
+    background-image: url('img/contactofond02o.jpg');
+    background-size: cover;
+    background-position: flex-end;
+    /*background-color: var(--text-color);*/
     color: var(--bg-color);
 }
 
@@ -612,7 +566,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--bg-color);
     border-radius: 4px;
     font-size: 1rem;
-    background-color: var(--text-color);
+    background-color: rgba(7, 7, 7, 0.254);
     color: var(--bg-color);
 }
 
@@ -639,69 +593,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================
-    CARRUSEL / SLIDER
-    ========================== */
-.container-carrossel {
-    position: relative;
-    /* --- FIX RESPONSIVO --- */
-    /* 3. Evita que la animación del carrusel desborde el cuerpo */
-    overflow-x: hidden; 
-    overflow-y: visible;
-    margin: 3rem 0;
-    padding: 1rem 0;
-    background-color: var(--bg-color);
-}
-
-.carrossel-loop {
-    display: flex;
-    gap: 1rem;
-    animation: scrollLoop 20s linear infinite;
-}
-
-.carrossel-item {
-    flex: 0 0 auto;
-    width: 450px; 
-    height: 350px; 
-    border-radius: 20px;
-    overflow: hidden;
-    background: var(--bg-color);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.carrossel-item:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-}
-
-.info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.6);
-    color: var(--bg-color);
-    padding: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    text-align: center;
-}
-
-.carrossel-item:hover .info {
-    opacity: 1;
-}
-
-@keyframes scrollLoop {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* ==========================
     FOOTER DETALLADO
     ========================== */
 .footer {
@@ -724,7 +615,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer h4 { color: var(--bg-color); margin-bottom: 15px; font-size: 16px; font-weight: 600; }
 
-.footer p, .footer a { font-size: 14px; line-height: 1.6; color: #ccc; }
+.footer p, .footer a { font-size: 14px; line-height: 1.6; color: #4e4949; }
 
 .footer a:hover { color: #ffffff; }
 
@@ -793,150 +684,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ==========================
-    SECCIÓN TESLA RENOVADA - COLUMNAS 50/50
-=========================== */
-.tesla-inspired-section {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-.tesla-content-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    width: 100%;
-    max-width: 1200px;
-}
-
-/* ----- TÍTULO ----- */
-.tesla-main-title {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 4.5rem;
-    color: var(--bg-color); 
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-align: start;
-}
-
-/* ----- GRID 50/50 ----- */
-.tesla-grid-container {
-    display: flex;
-    width: 100%;
-    gap: 40px;
-}
-
-/* ----- COLUMNA IZQUIERDA: CARRUSEL ----- */
-.tesla-left-column {
-    flex: 0 0 50%;
-    display: flex;
-    height: 400px;
-    width: 400px;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    background: #111; 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    transition: transform 0.3s ease;
-}
-
-.tesla-left-column:hover {
-    transform: translateY(-5px);
-}
-
-.tesla-product-display img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.5s ease;
-}
-
-.tesla-product-display img:hover {
-    transform: scale(1.05);
-}
-
-/* ----- COLUMNA DERECHA: LISTA DE OPCIONES ----- */
-.tesla-right-column {
-    flex: 0 0 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-}
-
-.tesla-model-nav {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.tesla-nav-link {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6); 
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.tesla-nav-link:hover { color: var(--bg-color); } 
-.tesla-nav-link.active { color: var(--accent-color); font-weight: 700; }
-
-/* ----- CARRUSEL (interno de sección Tesla) ----- */
-.tesla-carousel {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 20px;
-}
-
-.carousel-images img {
-    display: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.carousel-images img.active { display: block; }
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: var(--bg-color); 
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 24px;
-    border-radius: 50%;
-    transition: background 0.3s;
-}
-
-.carousel-btn:hover { background: rgba(212,175,55,0.8); }
-
-.carousel-btn.prev { left: 10px; }
-.carousel-btn.next { right: 10px; }
-
-/* ==========================
     MEDIA QUERIES GLOBALES Y ESPECÍFICAS
 =========================== */
 
@@ -945,31 +692,6 @@ h1, h2, h3, h4, h5, h6 {
     .carrossel-item { width: 220px; height: 320px; } 
     .footer-container { max-width: 900px; }
 }
-
-/* Tablet Vertical (hasta 992px) */
-@media (max-width: 992px) {
-    /* Tesla: Apila las columnas */
-    .tesla-grid-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-    }
-    .tesla-left-column, .tesla-right-column { 
-        flex: 1 1 100%; 
-        max-width: 100%; /* Permite que ocupe todo el ancho */
-    }
-    .tesla-left-column { height: 350px; } /* Ajuste de altura */
-    .tesla-product-display { height: 100%; } 
-    .tesla-main-title { font-size: 3.5rem; text-align: center; }
-    .tesla-nav-link { font-size: 0.9rem; text-align: center; }
-
-    /* Carrusel de Productos */
-    .carrossel-item { width: 180px; height: 260px; }
-    
-    /* Nosotros (ya incluido arriba, pero lo ponemos aquí para organización) */
-    /* .section-about, .mission-vision ya se apilan correctamente */
-}
-
 /* Móvil Grande y Mediano (hasta 768px) */
 @media (max-width: 768px) {
     /* Navbar: Reduce padding */
@@ -1020,16 +742,6 @@ h1, h2, h3, h4, h5, h6 {
     .site-nav.active { display: flex; }
 }
 
-/* Móvil Pequeño (hasta 576px) */
-@media (max-width: 576px) {
-    .tesla-left-column { height: 250px; border-radius: 15px; }
-    .tesla-main-title { font-size: 2.5rem; }
-    .tesla-nav-link { font-size: 0.8rem; text-align: center; }
-    
-    /* Carrusel de Productos */
-    .carrossel-item { width: 120px; height: 180px; }
-}
-
 /* Footer: Eliminación de la regla anterior, que estaba duplicada o mal ubicada */
 .site-footer {
     background-color: var(--text-color);
@@ -1041,4 +753,227 @@ h1, h2, h3, h4, h5, h6 {
 .site-footer p {
     font-size: 0.9rem;
     color: var(--accent-color);
+}
+
+/* ==========================
+   ESTILOS ESPECÍFICOS: SECCION CATALOG
+   ========================== */
+
+/* Colores fijos que replican la imagen original (Ocre/Marrón) */
+.seccion-catalog {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* Título de la sección */
+.catalog-title {
+    color: var(--bg-color) !important;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Línea decorativa superior (usamos tu accent-color para el tema por defecto si es necesario) */
+.catalog-divider {
+    width: 100%;
+    max-width: 1300px;
+    height: 4px;
+    background-color: var(--accent-color); /* Marrón oscuro */
+    margin: -40px auto 40px;
+}
+
+/* Grid de items (Similar a products-grid pero con clase nueva) */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Contenedor del Item (la "Tarjeta" limpia) */
+.catalog-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 10px;
+    /* Transiciones para el hover */
+    transition: transform 0.3s ease;
+}
+
+.catalog-item:hover {
+    transform: translateY(-5px); /* Pequeño levantamiento al hacer hover */
+}
+
+/* Parte Visual (Círculo y Sombra) */
+.item-visual {
+    width: 100%;
+    max-width: 250px; /* Tamaño máximo del círculo */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border: 3px solid var(--accent-color); /* Borde oscuro para el efecto de marco */
+    transition: transform 0.3s ease;
+}
+
+.catalog-item:hover .item-visual {
+    transform: scale(1.05); /* El círculo crece un poco */
+}
+
+.item-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Información del Item */
+.item-info h3 {
+    color: var(--bg-color); /* Marrón Oscuro */
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.item-info p {
+    color: var(--ptext-color); /* Marrón Oscuro */
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .catalog-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    .item-visual {
+        max-width: 180px;
+    }
+    .catalog-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .catalog-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columnas en móviles */
+    }
+    .item-visual {
+        max-width: 150px;
+    }
+}
+
+
+
+
+/*seccion de catalogo*/
+
+.gafas {
+  padding: 40px 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.gafas-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+.product-card {
+  width: 380px;
+  border: 1px solid #f2f2f2;
+  background: #fff;
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.product-img {
+  position: relative;
+  width: 100%;        /* ocupa todo el ancho del card */
+  height: 350px;      /* puedes ajustar la altura */
+  overflow: hidden;   /* oculta lo que sobresalga */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img img {
+  width: 100%;        /* la imagen ocupa todo el ancho */
+  height: 100%;       /* ocupa toda la altura */
+  object-fit: cover;  /* recorta para llenar sin deformar */
+  display: block;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+/* al pasar el mouse, se cambia la imagen */
+.product-card:hover .product-img img {
+  content: url("img/aviatorjpg/tatesemi.jpg");
+}
+
+.product-badge {
+  position: absolute;
+  bottom: 10px;      /* lo pones abajo, puedes cambiar a top */
+  left: 10px;
+  background: #ccff00;
+  color: #000;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 6px;
+  z-index: 2;
+}
+
+.product-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #000;
+}
+
+.product-price {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-colors {
+  font-size: 12px;
+  color: #777;
+}
+
+.add-to-cart {
+  background: none;
+  border: 1px solid #000;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 20px; /* espacio entre tarjetas */
+  max-width: 1000px;
+  margin: auto;
+}
+
+.product-card {
+  width: 100%;
+  border: 1px solid #f2f2f2;
+  background: #fff;
+  position: relative;
+  font-family: Arial, sans-serif;
 }

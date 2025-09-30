@@ -23,9 +23,7 @@
     <section class="herone">
       <div class="hero-left">
           <div class="hero-content">
-              <h1>PARGATZ</h1>
-              <p>MAGNETIC MOOD</p>
-              <a href="coleccion.html" class="btn btn-primary">Ver catálogo</a>
+              <img src="img/logo-pargatz-remove.png" alt="Logo PARGATZ" class="logo-img-hero">
           </div>
       </div>
       <div class="hero-right"></div>
@@ -36,88 +34,61 @@
       <div class="hero-overlay"></div> <!-- cortina transparente -->
     </section>
   </div>
+  
+  <section class="seccion-catalog">
+      <div class="container">
+          
+          <div class="catalog-divider scroll-reveal slide-from-bottom"></div>
+          
+          <h2 class="catalog-title scroll-reveal slide-from-bottom">NUESTRA COLECCIÓN</h2>
 
-  <section class="tesla-inspired-section">
-    <div class="tesla-content-layout">
+          <div class="catalog-grid">
 
-      <div class="tesla-header-spacing">
-        <h1 class="tesla-main-title">Elige Tu Estilo</h1>
-      </div>
-      <div class="tesla-grid-container">
+              <div class="catalog-item scroll-reveal slide-from-left" data-title="RESPLANDOR RÚSTICO">
+                  <div class="item-visual">
+                      <img src="img/gafablack.png" alt="Gafa Resplandor Rústico">
+                  </div>
+                  <div class="item-info">
+                      <h3>RESPLANDOR RÚSTICO</h3>
+                      <p>$350</p>
+                  </div>
+              </div>
 
-        <!-- Columna izquierda con carrusel -->
-        <div class="tesla-left-column">
-          <div class="tesla-carousel">
-            <button class="carousel-btn prev">&#10094;</button>
-            <div class="carousel-images">
-              <img src="img/aviatorjpg/IMG_9862.jpg" class="active" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9863.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9864.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9865.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9866.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9867.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9868.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9869.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9870.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9871.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9872.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9873.jpg" alt="Gafas">
-              <img src="img/aviatorjpg/IMG_9874.jpg" alt="Gafas">
-            </div>
-            <button class="carousel-btn next">&#10095;</button>
+              <div class="catalog-item scroll-reveal slide-from-bottom" data-title="CUERO DE LEGADO">
+                  <div class="item-visual">
+                      <img src="img/gafablack.png" alt="Gafa Cuero de Legado">
+                  </div>
+                  <div class="item-info">
+                      <h3>CUERO DE LEGADO</h3>
+                      <p>$420</p>
+                  </div>
+              </div>
+
+              <div class="catalog-item scroll-reveal slide-from-bottom" data-title="EXPRESO URBANO">
+                  <div class="item-visual">
+                      <img src="img/gafablack.png" alt="Gafa Expreso Urbano">
+                  </div>
+                  <div class="item-info">
+                      <h3>EXPRESO URBANO</h3>
+                      <p>$280</p>
+                  </div>
+              </div>
+
+              <div class="catalog-item scroll-reveal slide-from-right" data-title="TIERRA FIRME">
+                  <div class="item-visual">
+                      <img src="img/gafablack.png" alt="Gafa Tierra Firme">
+                  </div>
+                  <div class="item-info">
+                      <h3>TIERRA FIRME</h3>
+                      <p>$390</p>
+                  </div>
+              </div>
+
           </div>
-        </div>
-
-        <!-- Columna derecha con navegación -->
-        <div class="tesla-right-column" style="text-align: center;">
-          <ul class="tesla-model-nav">
-            <li><a href="#circular-model" class="tesla-nav-link active">Circular Model</a></li>
-            <li><a href="#square-model" class="tesla-nav-link">Square Model</a></li>
-            <li><a href="#octagonal-model" class="tesla-nav-link">Octagonal Model</a></li>
-            <li><a href="#tate-aviator-model" class="tesla-nav-link">Tate Aviator Model</a></li>
-            <li><a href="#flexible-model" class="tesla-nav-link">Flexible Model</a></li>
-          </ul>
-        </div>
-
       </div>
-    </div>
   </section>
 
-
 <div id="footer"></div>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const images = document.querySelectorAll('.carousel-images img');
-    const prevBtn = document.querySelector('.carousel-btn.prev');
-    const nextBtn = document.querySelector('.carousel-btn.next');
-    let current = 0;
-
-    function showImage(index) {
-      images.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-      });
-    }
-
-    prevBtn.addEventListener('click', () => {
-      current = (current - 1 + images.length) % images.length;
-      showImage(current);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      current = (current + 1) % images.length;
-      showImage(current);
-    });
-
-    // Autoplay opcional cada 3s
-    setInterval(() => {
-      current = (current + 1) % images.length;
-      showImage(current);
-    }, 3000);
-
-    showImage(current);
-  });
-  </script>
 
   <!-- JS -->
   <script>
@@ -138,7 +109,7 @@
     }
 
     // Alterna cada 5 segundos (5000ms)
-    setInterval(alternarHeroes, 22000);
+    setInterval(alternarHeroes, 2000);
 
     // Video hero
     document.addEventListener("DOMContentLoaded", () => {
@@ -162,62 +133,87 @@
     });
   </script>
   
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Cargar header y footer
-  fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('header').innerHTML = data;
-      initHeaderScripts(); // inicializa toggle y menú
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Cargar header y footer
+      fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header').innerHTML = data;
+          initHeaderScripts(); // inicializa toggle y menú
+        });
+
+      fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer').innerHTML = data;
+        });
+
+      // Manejo de tema
+      function setTheme(dark) {
+        const toggleBtn = document.getElementById("theme-toggle");
+        const icon = toggleBtn?.querySelector("i");
+        if(dark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+          icon?.classList.replace("fa-moon","fa-sun");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+          icon?.classList.replace("fa-sun","fa-moon");
+        }
+        localStorage.setItem("darkTheme", dark);
+      }
+
+      // Aplicar tema guardado en localStorage
+      const savedTheme = localStorage.getItem("darkTheme") === "true";
+      setTheme(savedTheme);
+
+      // Inicializa toggle cuando el header esté cargado
+      function initHeaderScripts() {
+        const toggleBtn = document.getElementById("theme-toggle");
+        const menuToggle = document.querySelector(".menu-toggle");
+        const sidebar = document.getElementById("sidebar");
+        const closeSidebar = document.getElementById("closeSidebar");
+
+        if(toggleBtn){
+          toggleBtn.addEventListener("click", () => {
+            const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+            setTheme(!isDark);
+          });
+        }
+
+        if(menuToggle && sidebar && closeSidebar){
+          menuToggle.addEventListener("click", () => sidebar.classList.add("active"));
+          closeSidebar.addEventListener("click", () => sidebar.classList.remove("active"));
+        }
+      }
     });
+  </script>
 
-  fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('footer').innerHTML = data;
+  <script>
+    // Animaciones al hacer scroll usando Intersection Observer
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            root: null, 
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Cuando el elemento es visible, añade la clase 'reveal' (que activa la animación)
+                    entry.target.classList.add('reveal');
+                    // Deja de observar el elemento
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Selecciona todos los elementos con la clase 'scroll-reveal'
+        const elements = document.querySelectorAll('.scroll-reveal');
+        elements.forEach(el => observer.observe(el));
     });
-
-  // Manejo de tema
-  function setTheme(dark) {
-    const toggleBtn = document.getElementById("theme-toggle");
-    const icon = toggleBtn?.querySelector("i");
-    if(dark) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      icon?.classList.replace("fa-moon","fa-sun");
-    } else {
-      document.documentElement.removeAttribute("data-theme");
-      icon?.classList.replace("fa-sun","fa-moon");
-    }
-    localStorage.setItem("darkTheme", dark);
-  }
-
-  // Aplicar tema guardado en localStorage
-  const savedTheme = localStorage.getItem("darkTheme") === "true";
-  setTheme(savedTheme);
-
-  // Inicializa toggle cuando el header esté cargado
-  function initHeaderScripts() {
-    const toggleBtn = document.getElementById("theme-toggle");
-    const menuToggle = document.querySelector(".menu-toggle");
-    const sidebar = document.getElementById("sidebar");
-    const closeSidebar = document.getElementById("closeSidebar");
-
-    if(toggleBtn){
-      toggleBtn.addEventListener("click", () => {
-        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-        setTheme(!isDark);
-      });
-    }
-
-    if(menuToggle && sidebar && closeSidebar){
-      menuToggle.addEventListener("click", () => sidebar.classList.add("active"));
-      closeSidebar.addEventListener("click", () => sidebar.classList.remove("active"));
-    }
-  }
-});
-</script>
-
+  </script>
 
 </body>
 </html>
