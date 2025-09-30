@@ -885,13 +885,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
   color: var(--text-color);
 }
-.product-card {
-  width: 380px;
-  border: 1px solid #f2f2f2;
-  background: #fff;
-  position: relative;
-  font-family: Arial, sans-serif;
-}
 
 .product-img {
   position: relative;
@@ -952,28 +945,107 @@ h1, h2, h3, h4, h5, h6 {
 
 .product-colors {
   font-size: 12px;
-  color: #777;
+  color: #000000;
 }
 
 .add-to-cart {
   background: none;
-  border: 1px solid #000;
+  border: 1px solid #353434;
   padding: 5px 8px;
   cursor: pointer;
 }
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  grid-template-columns: repeat(4, 1fr); /* 3 columnas */
   gap: 20px; /* espacio entre tarjetas */
-  max-width: 1000px;
+  max-width: 1400px;
   margin: auto;
 }
 
 .product-card {
-  width: 100%;
-  border: 1px solid #f2f2f2;
-  background: #fff;
   position: relative;
-  font-family: Arial, sans-serif;
+  background: #fff;
+  border-radius: 15px;
+  padding: 0px;
+  text-align: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.product-img {
+  position: relative;
+}
+
+.product-img img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* Botón oculto por defecto */
+.add-to-cart {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background: #ccff00;
+  color: #000000;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Mostrar al pasar el mouse */
+.product-card:hover .add-to-cart {
+  opacity: 1;
+  pointer-events: auto;
+  bottom: 40px; /* pequeño desplazamiento */
+}
+
+.add-to-cart:hover {
+  background: #565d18;
+  color: white;
+}
+
+
+
+/* Estilo del ojito */
+.view-product {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  opacity: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Mostrar solo al pasar el mouse */
+.product-card:hover .view-product {
+  opacity: 1;
+}
+
+/* Efecto hover */
+.view-product:hover {
+  background: #ccff00;
+  color: #000;
 }
