@@ -1049,3 +1049,59 @@ h1, h2, h3, h4, h5, h6 {
   background: #ccff00;
   color: #000;
 }
+
+/* ---- Desktop / por defecto ---- */
+.view-product,
+.add-to-cart {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.product-card:hover .view-product,
+.product-card:hover .add-to-cart {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---- Móvil (pantallas <= 768px) ---- */
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet/móvil */
+    gap: 15px;
+    padding: 30px;
+  }
+
+  .view-product,
+  .add-to-cart {
+    opacity: 1 !important;   /* siempre visibles */
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .view-product {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .add-to-cart {
+    bottom: 15px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ---- Extra pequeño (<= 480px) ---- */
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* una sola columna en móvil pequeño */
+  }
+
+  .add-to-cart {
+    bottom: 10px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
