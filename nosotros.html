@@ -92,13 +92,14 @@
       // Aplicar tema guardado en localStorage
       const savedTheme = localStorage.getItem("darkTheme") === "true";
       setTheme(savedTheme);
-
+      
       // Inicializa toggle cuando el header esté cargado
       function initHeaderScripts() {
         const toggleBtn = document.getElementById("theme-toggle");
         const menuToggle = document.querySelector(".menu-toggle");
         const sidebar = document.getElementById("sidebar");
         const closeSidebar = document.getElementById("closeSidebar");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
 
         if(toggleBtn){
           toggleBtn.addEventListener("click", () => {
@@ -107,9 +108,10 @@
           });
         }
 
-        if(menuToggle && sidebar && closeSidebar){
+        if(menuToggle && sidebar && closeSidebar && sidebarOverlay){
           menuToggle.addEventListener("click", () => sidebar.classList.add("active"));
           closeSidebar.addEventListener("click", () => sidebar.classList.remove("active"));
+          sidebarOverlay.addEventListener("click", () => {sidebar.classList.remove("active");sidebarOverlay.classList.remove("active");});
         }
       }
     });

@@ -9,7 +9,7 @@
 <!-- ====== NAVBAR SUPERIOR ====== -->
   <header class="navbar">
     <div class="navbar-left">
-      <a href="#" class="contact-link">+ Contáctanos</a>
+      <i></i>
     </div>
 
     <div class="navbar-center">
@@ -19,19 +19,19 @@
     </div>
 
     <div class="navbar-right">
-      <i class="fa-solid fa-search"></i>
+      <!--<i class="fa-solid fa-search"></i>
 
-      <!-- Botón toggle tema -->
+       Botón toggle tema 
       <button id="theme-toggle" class="theme-toggle">
         <i class="fa-solid fa-moon"></i>
-      </button>
+      </button>-->
 
       <span class="menu-toggle">
-        <i class="fa-solid fa-bars"></i> MENU
+        <i class="fa-solid fa-bars"></i>
       </span>
     </div>
   </header>
-    <!-- ====== SIDEBAR MENU ====== -->
+  <!-- ====== SIDEBAR MENU ====== -->
   <aside class="sidebar" id="sidebar">
     <div id="closeSidebar" class="close-sidebar">
         <i class="fa-solid fa-arrow-left"></i> <!-- icono de flecha -->
@@ -43,21 +43,34 @@
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </aside>
-
-<script>
-    const sidebar = document.getElementById("sidebar");
-    const menuToggle = document.querySelector(".menu-toggle");
-    const closeSidebar = document.getElementById("closeSidebar");
-
-    menuToggle.addEventListener("click", () => {
-      sidebar.classList.add("active");
-    });
-
-    closeSidebar.addEventListener("click", () => {
-      sidebar.classList.remove("active");
-    });
-</script>
+  <!-- Overlay para el sidebar -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
   
+<script>
+  const sidebar = document.getElementById("sidebar");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const closeSidebar = document.getElementById("closeSidebar");
+  const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+  // Abrir sidebar
+  menuToggle.addEventListener("click", () => {
+    sidebar.classList.add("active");
+    sidebarOverlay.style.display = "block";
+  });
+
+  // Cerrar con el botón
+  closeSidebar.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    sidebarOverlay.style.display = "none";
+  });
+
+  // Cerrar tocando afuera (overlay)
+  sidebarOverlay.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    sidebarOverlay.style.display = "none";
+  });
+</script>
+
 <script>
   const toggleBtn = document.getElementById("theme-toggle");
   const icon = toggleBtn.querySelector("i");

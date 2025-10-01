@@ -18,27 +18,28 @@
 
   <br>
   <br>
-<!-- Hero / Sección principal -->
-  <div class="hero-wrapper"> <!-- contenedor padre -->
-    <section class="herone">
-      <div class="hero-left">
-          <div class="hero-content">
-              <img src="img/logo-pargatz-remove.png" alt="Logo PARGATZ" class="logo-img-hero">
-          </div>
-      </div>
-      <div class="hero-right"></div>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-background">
+      <video autoplay muted loop playsinline>
+        <source src="img/pargatz.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+    </div>
 
-    <section class="hero">
-      <div class="hero-background"></div>
-      <div class="hero-overlay"></div> <!-- cortina transparente -->
-    </section>
-  </div>
-  
+    <!-- CORTINA TRANSPARENTE -->
+    <div class="hero-overlay"></div>
+
+    <!-- CONTENIDO ENCIMA DEL VIDEO -->
+    <div class="hero-content">
+      <img src="img/logo-pargatz-remove.png" alt="Logo Pargatz" class="logo-img-hero">
+      <p>Descubre la elegancia y protección de nuestras gafas de sol</p>
+      <a href="coleccion.html" class="btn btn-primary">VER COLECCIÓN </a>
+    </div>
+  </section>
+
   <section class="seccion-catalog">
       <div class="container">
-          
-          <div class="catalog-divider scroll-reveal slide-from-bottom"></div>
           
           <h2 class="catalog-title scroll-reveal slide-from-bottom">NUESTRA COLECCIÓN</h2>
 
@@ -90,48 +91,6 @@
 
 <div id="footer"></div>
 
-  <!-- JS -->
-  <script>
-    const herone = document.querySelector('.herone');
-    const hero = document.querySelector('.hero');
-
-    // empezamos mostrando .herone
-    herone.classList.add('active');
-
-    function alternarHeroes() {
-      if (herone.classList.contains('active')) {
-        herone.classList.remove('active');
-        hero.classList.add('active');
-      } else {
-        hero.classList.remove('active');
-        herone.classList.add('active');
-      }
-    }
-
-    // Alterna cada 5 segundos (5000ms)
-    setInterval(alternarHeroes, 2000);
-
-    // Video hero
-    document.addEventListener("DOMContentLoaded", () => {
-      const heroBg = document.querySelector(".hero-background");
-      if (heroBg) {
-        const video = document.createElement("video");
-        video.src = "img/pargatz.mp4";
-        video.autoplay = true;
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-        heroBg.appendChild(video);
-      }
-
-      // Menu hamburguesa
-      const menuToggle = document.querySelector(".menu-toggle");
-      const nav = document.querySelector(".site-nav");
-      menuToggle.addEventListener("click", () => {
-        nav.classList.toggle("active");
-      });
-    });
-  </script>
   
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -173,6 +132,7 @@
         const menuToggle = document.querySelector(".menu-toggle");
         const sidebar = document.getElementById("sidebar");
         const closeSidebar = document.getElementById("closeSidebar");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
 
         if(toggleBtn){
           toggleBtn.addEventListener("click", () => {
@@ -181,9 +141,10 @@
           });
         }
 
-        if(menuToggle && sidebar && closeSidebar){
+        if(menuToggle && sidebar && closeSidebar && sidebarOverlay){
           menuToggle.addEventListener("click", () => sidebar.classList.add("active"));
           closeSidebar.addEventListener("click", () => sidebar.classList.remove("active"));
+          sidebarOverlay.addEventListener("click", () => {sidebar.classList.remove("active");sidebarOverlay.classList.remove("active");});
         }
       }
     });
