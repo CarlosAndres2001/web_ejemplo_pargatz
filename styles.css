@@ -798,9 +798,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .gafas-title {
   font-family: 'Times New Roman', Times, serif;
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: flex-start;
+  font-size: 2.1rem;
   margin-bottom: 20px;
+  padding: 50px;
   color: var(--bg-color);
 }
 
@@ -846,24 +847,27 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   font-weight: bold;
   margin: 5px 0;
-  color: #000;
+  color: var(--bg-color);
 }
 
 .product-price {
   font-size: 14px;
   font-weight: bold;
+  color: var(--bg-color);
   margin: 5px 0;
 }
 
 .product-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
 .product-colors {
   font-size: 12px;
-  color: #000000;
+  color: var(--bg-color);
+  justify-content: center;
+  align-items: center;
 }
 
 .add-to-cart {
@@ -883,13 +887,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .product-card {
   position: relative;
-  background: #fff;
+  background: var(--text-color);
   border-radius: 15px;
   padding: 0px;
   text-align: center;
   transition: all 0.3s ease;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.459);
 }
 
 .product-card:hover {
