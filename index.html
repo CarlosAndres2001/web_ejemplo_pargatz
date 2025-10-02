@@ -90,19 +90,19 @@
   </section>
 
   <div class="carousel-container">
-      <section class="banner-section" id="banner-section">
-          <img src="img/bannermeta/banner1.jpg" alt="Banner 1">
+      <section class="banner-section">
+          <img src="img/bannermeta/banner12.jpg" alt="Banner 1">
           <img src="img/bannermeta/banner2.jpg" alt="Banner 2">
           <img src="img/bannermeta/banner3.jpg" alt="Banner 3">
           <img src="img/bannermeta/banner4.jpg" alt="Banner 4">
           <img src="img/bannermeta/banner5.jpg" alt="Banner 5">
-          <img src="img/bannermeta/banner6.jpg" alt="Banner 6">
+          <img src="img/bannermeta/banner6.jpg" alt="Banner 6"> 
           <img src="img/bannermeta/banner7.jpg" alt="Banner 7">
-          <img src="img/bannermeta/banner8.jpg" alt="Banner 8">
-          <img src="img/bannermeta/banner9.jpg" alt="Banner 9">
+          <img src="img/bannermeta/banner1.jpg" alt="Banner 8">
+          <img src="img/bannermeta/banner8.jpg" alt="Banner 9">
           <img src="img/bannermeta/banner10.jpg" alt="Banner 10">
           <img src="img/bannermeta/banner11.jpg" alt="Banner 11">
-          <img src="img/bannermeta/banner12.jpg" alt="Banner 12">
+          <img src="img/bannermeta/banner9.jpg" alt="Banner 12">
           <img src="img/bannermeta/banner13.jpg" alt="Banner 13">
           <img src="img/bannermeta/banner14.jpg" alt="Banner 14">
           <img src="img/bannermeta/banner15.jpg" alt="Banner 15">
@@ -111,13 +111,66 @@
           <img src="img/bannermeta/banner18.jpg" alt="Banner 18">
           <img src="img/bannermeta/banner19.jpg" alt="Banner 19">
           <img src="img/bannermeta/banner20.jpg" alt="Banner 20">
-          <img src="img/bannermeta/banner21.jpg" alt="Banner 21">
       </section>
       <ul class="carousel-indicators" id="carousel-indicators"></ul>
   </div>
 
   <div id="footer"></div>
-  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const track = document.querySelector(".banner-section");
+      const slides = Array.from(track.children);
+      const prevBtn = document.createElement("button");
+      const nextBtn = document.createElement("button");
+      const indicators = document.getElementById("carousel-indicators");
+
+      let currentIndex = 0;
+      const slidesPerPage = 4;
+      const totalSlides = slides.length;
+      const totalPages = Math.ceil(totalSlides / slidesPerPage);
+
+      // Botones prev/next
+      prevBtn.className = "carousel-btn prev";
+      prevBtn.innerHTML = "&#10094;"; // flecha izquierda
+      nextBtn.className = "carousel-btn next";
+      nextBtn.innerHTML = "&#10095;"; // flecha derecha
+      track.parentElement.appendChild(prevBtn);
+      track.parentElement.appendChild(nextBtn);
+
+      // Crear indicadores
+      for (let i = 0; i < totalPages; i++) {
+        const li = document.createElement("li");
+        if (i === 0) li.classList.add("active");
+        li.dataset.index = i;
+        indicators.appendChild(li);
+      }
+
+      const updateCarousel = () => {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        indicators.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+        indicators.querySelectorAll("li")[currentIndex].classList.add("active");
+      };
+
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + totalPages) % totalPages;
+        updateCarousel();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % totalPages;
+        updateCarousel();
+      });
+
+      indicators.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+          currentIndex = parseInt(e.target.dataset.index);
+          updateCarousel();
+        }
+      });
+    });
+  </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Cargar header y footer
