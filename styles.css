@@ -28,7 +28,9 @@ body {
     overflow-x: hidden; 
     width: 100%;
     
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
     letter-spacing: 1px;
     line-height: 1.6;
     color: var(--text-color);
@@ -37,7 +39,7 @@ body {
 
 /* Títulos */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -257,7 +259,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-content p {
-  font-family: "Times New Roman", serif;
+  font-family: "Roboto", serif;
   font-size: 1.2rem;
   font-weight: 300;
   color: var(--bg-color);
@@ -301,7 +303,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--text-color);
     color: var(--bg-color);
     border: 2px solid var(--text-color); 
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', serif;
 }
 
 .btn-primary:hover {
@@ -608,7 +610,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--text-color);
     border-top: 1px solid #393636;
     color: #eee;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding: 30px 20px 20px;
 }
 
@@ -878,8 +880,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/*seccion de catalogo*/
-
+/*seccion de catalogo de gafas*/
+/* Sección catálogo */
+/* ==========================
+   Sección catálogo
+========================== */
 .gafas {
   padding: 40px 0;
   background-color: var(--text-color);
@@ -887,7 +892,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gafas-title {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Roboto', sans-serif;
   text-align: flex-start;
   font-size: 2.1rem;
   margin-bottom: 20px;
@@ -895,35 +900,64 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--bg-color);
 }
 
-.product-img {
+/* ==========================
+   Grid de productos
+========================== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* ==========================
+   Card
+========================== */
+.product-card { 
   position: relative;
-  width: 100%;        /* ocupa todo el ancho del card */
-  height: 350px;      /* puedes ajustar la altura */
-  overflow: hidden;   /* oculta lo que sobresalga */
+  background: var(--text-color);
+  border-radius: 15px;
+  padding: 0;
+  text-align: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.459);
+}
+
+.product-card:hover { 
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* ==========================
+   Imagen
+========================== */
+.product-img { 
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .product-img img {
-  width: 100%;        /* la imagen ocupa todo el ancho */
-  height: 100%;       /* ocupa toda la altura */
-  object-fit: cover;  /* recorta para llenar sin deformar */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
   display: block;
+  transition: 0.3s ease;
 }
 
-.product-info {
-  padding: 10px;
-}
-
-/* al pasar el mouse, se cambia la imagen */
-.product-card:hover .product-img img {
-  content: url("img/aviatorjpg/tatesemi.jpg");
-}
-
+/* ==========================
+   Badges
+========================== */
 .product-badge {
   position: absolute;
-  bottom: 10px;      /* lo pones abajo, puedes cambiar a top */
+  bottom: 10px;
   left: 10px;
   background: #ccff00;
   color: #000;
@@ -931,6 +965,69 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
   padding: 3px 6px;
   z-index: 2;
+}
+
+/* ==========================
+   Botones sobre la imagen
+========================== */
+.add-to-cart, .view-product {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .add-to-cart,
+.product-card:hover .view-product {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Add to cart */
+.add-to-cart {
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background: #ccff00;
+  color: #000;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  bottom: 40px;
+}
+
+.add-to-cart:hover {
+  background: #565d18;
+  color: white;
+}
+
+/* View product (ojito) */
+.view-product {
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.view-product:hover {
+  background: #ccff00;
+  color: #000;
+}
+
+/* ==========================
+   Info de producto
+========================== */
+.product-info {
+  padding: 10px;
 }
 
 .product-name {
@@ -960,132 +1057,50 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-.add-to-cart {
-  background: none;
-  border: 1px solid #353434;
-  padding: 5px 8px;
-  cursor: pointer;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3 columnas */
-  gap: 20px; /* espacio entre tarjetas */
-  max-width: 1400px;
-  margin: auto;
-}
-
-.product-card {
-  position: relative;
-  background: var(--text-color);
-  border-radius: 15px;
-  padding: 0px;
-  text-align: center;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.459);
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-
-.product-img {
-  position: relative;
-}
-
-.product-img img {
-  max-width: 100%;
-  border-radius: 10px;
-}
-
-/* Botón oculto por defecto */
-.add-to-cart {
+/* ==========================
+   Selector de colores
+========================== */
+.color-selector {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 20px;
-  background: #ccff00;
-  color: #000000;
-  font-size: 14px;
-  border: none;
-  border-radius: 25px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-/* Mostrar al pasar el mouse */
-.product-card:hover .add-to-cart {
-  opacity: 1;
-  pointer-events: auto;
-  bottom: 40px; /* pequeño desplazamiento */
-}
-
-.add-to-cart:hover {
-  background: #565d18;
-  color: white;
-}
-
-
-
-/* Estilo del ojito */
-.view-product {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  bottom: 10px;
+  right: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  opacity: 0;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0; /* oculto por defecto */
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .color-selector {
+  opacity: 1; /* se muestra solo al hover */
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
-/* Mostrar solo al pasar el mouse */
-.product-card:hover .view-product {
-  opacity: 1;
+.color-circle:hover {
+  transform: scale(1.2);
 }
 
-/* Efecto hover */
-.view-product:hover {
-  background: #ccff00;
-  color: #000;
-}
-
-/* ---- Desktop / por defecto ---- */
-.view-product,
-.add-to-cart {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.product-card:hover .view-product,
-.product-card:hover .add-to-cart {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* ---- Móvil (pantallas <= 768px) ---- */
+/* ==========================
+   Responsive
+========================== */
 @media (max-width: 768px) {
   .products-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet/móvil */
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     padding: 30px;
   }
 
   .view-product,
   .add-to-cart {
-    opacity: 1 !important;   /* siempre visibles */
+    opacity: 1 !important;
     pointer-events: auto;
     transform: none;
   }
@@ -1105,10 +1120,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ---- Extra pequeño (<= 480px) ---- */
 @media (max-width: 480px) {
   .products-grid {
-    grid-template-columns: 1fr; /* una sola columna en móvil pequeño */
+    grid-template-columns: 1fr;
   }
 
   .add-to-cart {

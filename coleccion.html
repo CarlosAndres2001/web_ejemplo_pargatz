@@ -24,13 +24,22 @@
       =========================== -->
       <div class="products-grid">
         <!-- MODELO 1 -->
-        <div class="product-card">
+        <div class="product-card" data-img="img/gafablack.png" data-hover="img/aviatorjpg/tatesemi.jpg">
           <div class="product-img">
-            <span class="product-badge">+ 6 FILTROS</span>
-            <img src="img/gafablack.png" alt="Gafa 1">
+            <img src="img/gafablack.png" alt="Gafa 1" class="product-photo">
+
             <button class="add-to-cart">Añadir al Carrito</button>
             <button class="view-product"><i class="fa-solid fa-eye"></i></button>
+
+            <div class="color-selector">
+              <span class="color-circle" data-img="img/octagonal/negro.jpg" style="background-color: #000;"></span>
+              <span class="color-circle" data-img="img/octagonal/rojo.jpg" style="background-color: #c00;"></span>
+              <span class="color-circle" data-img="img/octagonal/azul.jpg" style="background-color: #007bff;"></span>
+              <span class="color-circle" data-img="img/octagonal/amarillo.jpg" style="background-color: #ffc107;"></span>
+              <span class="color-circle" data-img="img/octagonal/gris.jpg" style="background-color: #f8f9fa; border:1px solid #ccc;"></span>
+            </div>
           </div>
+
           <div class="product-info">
             <p class="product-name">MODEL PARGATZ TATE</p>
             <p class="product-price">$99.00</p>
@@ -39,6 +48,7 @@
             </div>
           </div>
         </div>
+
 
         <!-- MODELO 2 -->
         <div class="product-card">
@@ -163,6 +173,31 @@
 
   
   <div id="footer"></div>
+
+
+  <script>
+    document.querySelectorAll('.product-card').forEach(card => {
+      const img = card.querySelector('.product-photo');
+      const originalSrc = card.dataset.img;   // imagen principal
+      const hoverSrc = card.dataset.hover;    // imagen de hover del card
+
+      // Hover sobre la card (no sobre los círculos)
+      card.addEventListener('mouseenter', () => {
+        img.src = hoverSrc;
+      });
+      card.addEventListener('mouseleave', () => {
+        img.src = originalSrc; // vuelve a la principal al salir del card
+      });
+
+      // Hover sobre los círculos de color
+      card.querySelectorAll('.color-circle').forEach(circle => {
+        circle.addEventListener('mouseenter', () => {
+          img.src = circle.dataset.img; // cambia a la del color
+        });
+      });
+    });
+  </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Cargar header y footer

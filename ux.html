@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PARGATZ - INICIO</title>
+  <title>PARGATZ - ux</title>
 
   <!-- Fuentes -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- Slick CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ux.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
@@ -89,6 +89,22 @@
       </div>
   </section>
 
+  <section class="ux-gafas">
+    <div class="gafas-card">
+      <div class="gafas-photo" id="montura">
+        <img src="img/ux/lente.jpg" alt="Lentes" class="montura">
+        <!-- Aquí aparecerán los filtros pegados -->
+        <div class="filtro-aplicado"></div>
+      </div>
+
+      <div class="filtros-columna">
+        <img src="img/ux/filtrorojo.jpg" alt="Filtro 1" class="filtro" draggable="true" data-filtro="filtro1.png">
+        <img src="img/filtro2.png" alt="Filtro 2" class="filtro" draggable="true" data-filtro="filtro2.png">
+        <img src="img/filtro3.png" alt="Filtro 3" class="filtro" draggable="true" data-filtro="filtro3.png">
+      </div>
+    </div>
+  </section>
+
   <div class="carousel-container">
       <section class="banner-section">
           <img src="img/bannermeta/banner12.jpg" alt="Banner 1">
@@ -117,6 +133,34 @@
 
   <div id="footer"></div>
 
+  <script>
+    const filtros = document.querySelectorAll(".filtro");
+    const montura = document.getElementById("montura");
+    const filtroAplicado = document.querySelector(".filtro-aplicado");
+
+    filtros.forEach(filtro => {
+      filtro.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("filtro", filtro.dataset.filtro);
+      });
+    });
+
+    montura.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    montura.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const filtroSrc = e.dataTransfer.getData("filtro");
+
+      filtroAplicado.innerHTML = `<img src="img/${filtroSrc}" alt="Filtro aplicado">`;
+
+      const filtroImg = filtroAplicado.querySelector("img");
+      setTimeout(() => {
+        filtroImg.style.opacity = "1";
+        filtroImg.style.transform = "scale(1)";
+      }, 10);
+    });
+  </script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const track = document.querySelector(".banner-section");
@@ -168,15 +212,8 @@
           updateCarousel();
         }
       });
-
-      // 🔥 Auto-avance cada 3 segundos
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % totalPages;
-        updateCarousel();
-      }, 3000);
     });
   </script>
-
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
