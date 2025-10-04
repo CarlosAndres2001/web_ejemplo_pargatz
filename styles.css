@@ -233,11 +233,6 @@ h1, h2, h3, h4, h5, h6 {
     object-position: center;
 }
 
-.logo-img-hero {
-    max-height: 80px;
-    margin-bottom: 20px;
-}
-
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -249,23 +244,48 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-content {
-  max-width: 800px;
-  width: 80%;
-  filter: brightness(1.2);
-  display: flex;           
-  flex-direction: column;  
-  align-items: flex-start;    
-  padding-left: 150px;     
+    padding-bottom: 1px;
+    padding-left: 150px;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    margin-bottom: 5px;
+    line-height: 1;
 }
 
 .hero-content p {
-  font-family: "Roboto", serif;
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: var(--bg-color);
-  line-height: 1.6;
-  max-width: 600px; 
-  margin-bottom: 20px;
+    font-size: 0.9em;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.hero-content .subtitle {
+    font-size: 0.8em;
+    color: white;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.btn-comprar {
+    display: inline-block;
+    font-family: 'Roboto', condensed, bold;
+    background: linear-gradient(to bottom, #fffefe, #8c8c8c);
+    color: #4f4f4f;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0px;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-comprar:hover {
+    background: linear-gradient(to bottom, #c8a760,#fede9f, #c9971f, #966c10);
+    color: #7c5900;
 }
 
 /* ==============================
