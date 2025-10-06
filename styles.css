@@ -919,13 +919,12 @@ h1, h2, h3, h4, h5, h6 {
 ========================== */
 .product-card { 
   position: relative;
-  background: #e8e3e3;
+  background: #333333;
   border-radius: 15px;
   padding: 0;
   text-align: start;
   transition: all 0.3s ease;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.459);
 }
 
 .product-card:hover { 
@@ -1011,7 +1010,6 @@ h1, h2, h3, h4, h5, h6 {
   right: 20px;
   background: rgba(0,0,0,0.6);
   color: #fff;
-  border: none;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -1024,6 +1022,27 @@ h1, h2, h3, h4, h5, h6 {
 .view-product:hover {
   background: #ccff00;
   color: #000;
+}
+/* ==========================
+   Hover con video y segunda imagen
+========================== */
+.product-img video,
+.product-img .second-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.product-img .main-image {
+  opacity: 1;
+  transition: opacity 0.6s ease;
 }
 
 /* ==========================
@@ -1039,25 +1058,26 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 .product-name {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   margin: 5px 0;
   justify-content: start;
   align-items: start;
-  color: var(--text-color);
+  color: var(--bg-color);
 }
 
 .product-filters {
-  font-size: 12px;
-  color:gray;
+  font-size: 18px;
+  font-weight: bold;
+  color:rgb(132, 123, 123);
   justify-content: start;
   align-items: start;
 }
 
 .product-price {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
-  color: var(--text-color);
+  color: var(--bg-color);
   margin: 5px 0;
 }
 
@@ -1069,7 +1089,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .product-colors {
   font-size: 12px;
-  color: var(--text-color);
+  color: var(--bg-color);
   justify-content: start;
   align-items: start;
 }
@@ -1287,4 +1307,157 @@ h1, h2, h3, h4, h5, h6 {
   .pargatz-find {
     font-size: 1rem;
   }
+}
+
+/* ==========================
+  MAPA
+========================== */
+.map-section {
+  background: var(--text-color); /* fondo oscuro elegante */
+  padding: 80px 20px;
+  color: var(--bg-color);
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.map-container {
+  max-width: 1200px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.map-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.map-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  opacity: 0.8;
+}
+
+.map-container iframe {
+  border: 0;
+  width: 100%;
+  height: 450px;
+  transition: transform 0.3s ease;
+}
+
+.map-container iframe:hover {
+  transform: scale(1.02); /* efecto sutil al pasar mouse */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .map-title {
+    font-size: 2rem;
+  }
+  .map-subtitle {
+    font-size: 1rem;
+  }
+  .map-container iframe {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container iframe {
+    height: 250px;
+  }
+}
+
+
+/* Importar la fuente Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --color-principal-oscuro: #121212; /* Negro muy oscuro, casi negro puro */
+    --color-texto-claro: #E0E0E0; /* Blanco suave, no cegador */
+    --color-acento: #BB86FC; /* Un púrpura elegante para el acento (opcional, puedes usar #FFFFFF si quieres solo blanco y negro) */
+    --color-borde: #333333;
+}
+
+/* --- ESTILOS GENERALES Y LAYOUT --- */
+.locations-section {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--text-color);
+    color: var(--color-texto-claro);
+    padding: 60px 20px; /* Espaciado interno generoso */
+    text-align: center;
+}
+
+.locations-container {
+    max-width: 1200px;
+    margin: 0 auto; /* Centrar el contenido */
+}
+
+/* --- TÍTULOS Y SUBTÍTULOS --- */
+.locations-title {
+    font-size: 2.5rem; /* Tamaño grande */
+    font-weight: 700; /* Negrita */
+    margin-bottom: 10px;
+    color: var(--color-texto-claro);
+    letter-spacing: 1px; /* Espaciado sutil para un toque premium */
+}
+
+.locations-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300; /* Fuente ligera */
+    margin-bottom: 40px;
+    color: var(--accent-color); /* Destacar con el color de acento */
+}
+
+/* --- GRID DE UBICACIONES --- */
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 columnas en escritorio, adaptable en móvil */
+    gap: 30px; /* Espacio entre las tarjetas */
+    margin-top: 30px;
+}
+
+/* Estilo para cada tarjeta de ubicación */
+.location-name {
+    background-color: #1E1E1E; /* Un tono un poco más claro que el fondo principal */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra elegante */
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-texto-claro);
+    border: 1px solid var(--color-borde);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para lujo */
+.location-name:hover {
+    transform: translateY(-5px); /* Subida sutil */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* --- IFRAME DE GOOGLE MAPS --- */
+.location-name iframe {
+    width: 100%;
+    height: 350px; /* Altura fija para la consistencia */
+    margin-top: 15px;
+    border-radius: 4px;
+    border: 3px solid var(--color-borde) !important; /* Borde más visible para el mapa */
+    filter: grayscale(80%) invert(0%); /* Efecto visual elegante en el mapa */
+}
+
+/* --- MEDIA QUERIES PARA ADAPTACIÓN MÓVIL (Responsivo) --- */
+@media (max-width: 768px) {
+    .locations-title {
+        font-size: 2rem;
+    }
+    .locations-subtitle {
+        font-size: 1rem;
+    }
+    .locations-grid {
+        gap: 20px;
+    }
 }
