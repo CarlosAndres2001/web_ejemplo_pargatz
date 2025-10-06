@@ -549,80 +549,50 @@ h1, h2, h3, h4, h5, h6 {
 /* ==========================
    BANNER CAROUSEL
 ========================== */
+/* Contenedor principal */
 .carousel-container {
   position: relative;
   width: 100%;
   overflow: hidden;
 }
 
+/* Banner con cuadrícula */
 .banner-section {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  height: 450px;
 }
 
 .banner-section img {
-  flex: 0 0 25%; /* 4 imágenes por pantalla */
-  width: 25%;
-  height: 450px; /* ajusta la altura */
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: none; /* 🔹 sin bordes */
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
-/* Botones de navegación */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
-  border: none;
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
+/* Efecto de ocultar */
+.banner-section img.fade-out {
+  opacity: 0;
 }
 
-.carousel-btn:hover {
-  background: rgba(0,0,0,0.7);
+/* Responsivo: solo 2 imágenes por fila en pantallas pequeñas */
+@media (max-width: 768px) {
+  .banner-section {
+    grid-template-columns: repeat(2, 1fr);
+    height: 300px;
+  }
 }
 
-.carousel-btn.prev {
-  left: 10px;
-}
-
-.carousel-btn.next {
-  right: 10px;
-}
-
-/* Indicadores */
-.carousel-indicators {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  list-style: none;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-}
-
-.carousel-indicators li {
-  width: 12px;
-  height: 12px;
-  background: rgba(255,255,255,0.5);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.carousel-indicators li.active {
-  background: rgba(255,255,255,0.9);
+@media (max-width: 480px) {
+  .banner-section {
+    grid-template-columns: repeat(2, 1fr);
+    height: 220px;
+  }
 }
 
 
-
-    
 /* ==========================
     FOOTER DETALLADO
     ========================== */
@@ -1179,122 +1149,142 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ==========================
+   Nosotros
+========================== */
+/* Fuente Roboto (importar si no la tienes en tu HTML) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 .pargatz-section {
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-              url('img/nosotros.png') center/cover no-repeat;
-  color: #fff;
-  text-align: center;
-  padding: 100px 20px;
+  background-image: url('img/nosotros.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 90vh; /* 🔹 Aquí defines el alto de la sección */
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.pargatz-content {
-  max-width: 800px;
-  z-index: 2;
-}
-
-.pargatz-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  letter-spacing: 4px;
+  justify-content: center;
+  text-align: center;
   color: #fff;
-  margin-bottom: 10px;
-  animation: fadeInDown 1.5s ease;
+  padding: 80px 20px;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif; /* 🔹 Fuente definida aquí */
 }
 
-.pargatz-tagline {
-  font-family: 'Roboto', sans-serif;
-  font-size: clamp(1rem, 3vw, 1.4rem);
-  color: #e0e0e0;
+/* Capa oscura sobre el fondo */
+.pargatz-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+/* Contenedor del contenido */
+.pargatz-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+/* Logo */
+.pargatz-content img {
+  width: 300px; /* 🔹 Tamaño ajustado */
   margin-bottom: 25px;
-  animation: fadeInUp 1.5s ease;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+/* Textos */
+.pargatz-tagline {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
 
 .pargatz-description {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: #dcdcdc;
+  font-size: 1rem;
+  font-weight: 300;
   margin-bottom: 25px;
+  color: #ddd;
 }
 
 .pargatz-statement {
-  font-size: clamp(1.1rem, 3vw, 1.6rem);
-  color: #f0f0f0;
-  font-weight: 300;
-  margin: 35px 0;
+  font-size: 1.4rem;
+  font-weight: 500;
   line-height: 1.6;
-}
-
-.pargatz-statement strong,
-.pargatz-statement b {
-  color: #ffffff;
-  font-weight: 600;
+  margin-bottom: 25px;
 }
 
 .pargatz-question {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  margin: 30px 0 15px;
-  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 25px 0;
+  color: #fff;
 }
 
 .pargatz-find {
-  font-size: clamp(1rem, 3vw, 1.4rem);
-  color: #dddddd;
-  margin-bottom: 20px;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #ddd;
 }
 
 .pargatz-essence {
+  font-size: 1.2rem;
   font-style: italic;
-  font-size: clamp(1.1rem, 3vw, 1.6rem);
-  color: #ffffff;
-  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 .pargatz-slogan {
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
-  color: #cfcfcf;
-  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #ccc;
 }
 
-/* Animaciones sutiles */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Animación sutil */
+.pargatz-content > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+.pargatz-content > *:nth-child(1) { animation-delay: 0.2s; }
+.pargatz-content > *:nth-child(2) { animation-delay: 0.4s; }
+.pargatz-content > *:nth-child(3) { animation-delay: 0.6s; }
+.pargatz-content > *:nth-child(4) { animation-delay: 0.8s; }
+.pargatz-content > *:nth-child(5) { animation-delay: 1s; }
+.pargatz-content > *:nth-child(6) { animation-delay: 1.2s; }
+.pargatz-content > *:nth-child(7) { animation-delay: 1.4s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Responsividad */
+/* Responsive */
 @media (max-width: 768px) {
   .pargatz-section {
-    padding: 80px 15px;
-    background-position: center top;
+    padding: 60px 15px;
+    min-height: 80vh;
   }
 
-  .pargatz-content {
-    max-width: 95%;
+  .pargatz-content img {
+    width: 120px;
   }
 
-  .pargatz-logo {
-    letter-spacing: 2px;
-  }
-}
-
-@media (max-width: 480px) {
-  .pargatz-section {
-    padding: 60px 10px;
+  .pargatz-question {
+    font-size: 1.6rem;
   }
 
-  .pargatz-content p,
-  .pargatz-content h2 {
-    text-align: center;
+  .pargatz-statement {
+    font-size: 1.2rem;
+  }
+
+  .pargatz-tagline,
+  .pargatz-find {
+    font-size: 1rem;
   }
 }
