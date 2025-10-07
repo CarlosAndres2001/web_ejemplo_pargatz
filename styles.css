@@ -1144,7 +1144,7 @@ h1, h2, h3, h4, h5, h6 {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.726);
   z-index: 1;
 }
 
@@ -1416,30 +1416,48 @@ seccion de galeria de catalogo por modelo
 ##########*/
 /* --- Contenedor Principal (Donde se carga el modelo) --- */
 /* Asume que tu 'main' o contenedor superior le da un ancho máximo y centrado */
-.product-detail-layout {
-    display: flex; /* Habilita el diseño de dos columnas */
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #ffffff; /* Fondo blanco para todo el módulo */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); /* Sombra ligera (opcional) */
+
+/* 🛠️ OCULTAR BARRA DE SCROLL, PERO MANTENER FUNCIONALIDAD 🛠️ */
+
+/* Para navegadores basados en WebKit (Chrome, Safari, Edge, Opera) */
+.product-gallery::-webkit-scrollbar,
+.product-info-panel::-webkit-scrollbar {
+    display: none;
+    width: 0; /* Asegura que no quede espacio reservado */
+    height: 0;
 }
 
+/* Para Firefox */
+.product-gallery,
+.product-info-panel {
+    scrollbar-width: none; /* 'none' oculta la barra */
+    -ms-overflow-style: none; /* Para Internet Explorer/Edge antiguo */
+}
+.product-detail-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    height: 90vh; 
+    overflow: hidden; 
+}
 /* === LADO IZQUIERDO: GALERÍA === */
 /* --- Modificaciones en la Estructura de la Página --- */
-
 .product-detail-layout {
     display: flex; 
     max-width: 1200px;
     margin: 0 auto;
     background-color: #ffffff; 
 }
-
 /* 1. Definir el espacio que ocupa la Galería */
 .product-gallery {
-    /* Mantenemos el flex: 2 para que ocupe más espacio que el panel de información */
     flex: 2; 
-    padding: 20px; /* Reducimos el padding general si quieres más espacio para fotos */
+    padding: 20px;
     background-color: #f7f7f7; 
+    height: 100%; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
 }
 
 /* 2. Configuración de la Cuadrícula de Imágenes */
@@ -1481,25 +1499,42 @@ seccion de galeria de catalogo por modelo
     flex-direction: column;
 }
 
-/* --- Media Query (Ajuste para móviles) --- */
+/* --- Media Query para Responsividad --- */
 @media (max-width: 800px) {
+    
+    /* 📌 DESHACER SCROLL SEPARADO Y ALTURA FIJA 📌 */
     .product-detail-layout {
-        flex-direction: column; 
+        flex-direction: column; /* Apila las columnas (ya lo tenías) */
+        
+        /* 🔑 CLAVE: Quita la altura fija y el hidden overflow */
+        height: auto; 
+        overflow: visible; 
+        box-shadow: none; /* Opcional: Quita la sombra en móviles */
     }
-    /* Mantener las 2 columnas o cambiar a 1 columna en móviles, según prefieras */
+
+    .product-gallery, 
+    .product-info-panel {
+        /* 🔑 CLAVE: Vuelve a la altura normal y al overflow por defecto */
+        height: auto;
+        overflow-y: visible;
+        overflow-x: visible;
+        padding: 15px; /* Ajusta el padding para móviles */
+    }
+    
+    /* Mantenemos las 2 columnas para la galería, ya que caben horizontalmente */
     .product-thumbnail-grid {
-         grid-template-columns: 1fr 1fr; /* Podrías cambiar a 1fr si quieres que cada foto ocupe todo el ancho */
+        grid-template-columns: 1fr 1fr;
     }
 }
-
 /* === LADO DERECHO: INFORMACIÓN === */
 .product-info-panel {
-    flex: 1; /* Le da menos peso/espacio (ej: 40% del ancho) */
+    flex: 1; /* Ocupa el espacio restante */
     padding: 30px;
     display: flex;
-    flex-direction: column; /* Apila los elementos verticalmente */
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto; 
 }
-
 /* Títulos y Precios */
 .back-link {
     color: #555;
@@ -1514,10 +1549,10 @@ seccion de galeria de catalogo por modelo
     margin: 5px 0 10px 0;
 }
 
-.product-price {
+.product-price-catag {
     font-size: 2em;
     font-weight: 600;
-    color: #333;
+    color: #111111;
     margin-bottom: 20px;
 }
 
@@ -1537,12 +1572,12 @@ seccion de galeria de catalogo por modelo
 }
 
 .collaboration {
-    background-color: #fdd835; /* Amarillo */
+    background-color: #ffffff; /* Amarillo */
     color: #333;
 }
 
 .free-shipping {
-    background-color: #3f51b5; /* Azul/Morado */
+    background-color: #ffffff; /* Azul/Morado */
     color: white;
 }
 
