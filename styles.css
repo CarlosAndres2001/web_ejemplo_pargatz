@@ -1410,3 +1410,251 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+
+/*##########
+seccion de galeria de catalogo por modelo
+##########*/
+/* --- Contenedor Principal (Donde se carga el modelo) --- */
+/* Asume que tu 'main' o contenedor superior le da un ancho máximo y centrado */
+.product-detail-layout {
+    display: flex; /* Habilita el diseño de dos columnas */
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff; /* Fondo blanco para todo el módulo */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); /* Sombra ligera (opcional) */
+}
+
+/* === LADO IZQUIERDO: GALERÍA === */
+/* --- Modificaciones en la Estructura de la Página --- */
+
+.product-detail-layout {
+    display: flex; 
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff; 
+}
+
+/* 1. Definir el espacio que ocupa la Galería */
+.product-gallery {
+    /* Mantenemos el flex: 2 para que ocupe más espacio que el panel de información */
+    flex: 2; 
+    padding: 20px; /* Reducimos el padding general si quieres más espacio para fotos */
+    background-color: #f7f7f7; 
+}
+
+/* 2. Configuración de la Cuadrícula de Imágenes */
+.product-thumbnail-grid {
+    display: grid;
+    /* Define 2 columnas con el mismo ancho (1fr) */
+    grid-template-columns: 1fr 1fr; 
+    /* Espacio entre las filas y columnas */
+    gap: 10px; 
+    width: 100%; /* Ocupa todo el ancho de su contenedor */
+}
+
+/* 3. Estilo de cada Miniatura */
+.thumbnail-item {
+    /* Asegura que la imagen no se distorsione */
+    overflow: hidden; 
+    /* Opcional: una sombra o borde para separar cada foto */
+    border: 1px solid #e0e0e0;
+}
+
+.gallery-image {
+    width: 100%;
+    /* Asegura que la imagen sea un cuadrado o se recorte de forma limpia */
+    aspect-ratio: 1 / 1; 
+    object-fit: cover; /* Recorta la imagen para que llene el espacio sin distorsionarse */
+    display: block;
+    transition: transform 0.3s ease; /* Efecto hover suave (opcional) */
+}
+
+.thumbnail-item:hover .gallery-image {
+    transform: scale(1.09); /* Ligeramente más grande al pasar el ratón */
+}
+
+/* Asegúrate de que el panel de información sigue siendo flexible */
+.product-info-panel {
+    flex: 1; /* Ocupa el espacio restante */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Media Query (Ajuste para móviles) --- */
+@media (max-width: 800px) {
+    .product-detail-layout {
+        flex-direction: column; 
+    }
+    /* Mantener las 2 columnas o cambiar a 1 columna en móviles, según prefieras */
+    .product-thumbnail-grid {
+         grid-template-columns: 1fr 1fr; /* Podrías cambiar a 1fr si quieres que cada foto ocupe todo el ancho */
+    }
+}
+
+/* === LADO DERECHO: INFORMACIÓN === */
+.product-info-panel {
+    flex: 1; /* Le da menos peso/espacio (ej: 40% del ancho) */
+    padding: 30px;
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+}
+
+/* Títulos y Precios */
+.back-link {
+    color: #555;
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 5px 0 10px 0;
+}
+
+.product-price {
+    font-size: 2em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Etiquetas (Collaboration, Free Shipping) */
+.badges {
+    margin-bottom: 15px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-right: 5px;
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.collaboration {
+    background-color: #fdd835; /* Amarillo */
+    color: #333;
+}
+
+.free-shipping {
+    background-color: #3f51b5; /* Azul/Morado */
+    color: white;
+}
+
+
+/* Opciones de Color (Miniaturas) */
+.color-count {
+    font-size: 0.8em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.color-options-grid {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.color-option {
+    padding: 0;
+    border: 1px solid #ccc;
+    background: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.color-option.selected {
+    border: 3px solid #000; /* Borde más oscuro para el seleccionado */
+}
+
+.color-option img {
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+/* Botón Añadir al Carrito */
+.add-to-cart-btn {
+    padding: 15px;
+    background-color: #bfb605; /* Verde Hawkers */
+    color: white;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    margin-bottom: 25px;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #f2ff00;
+}
+
+/* Detalles de Envío */
+.shipping-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0;
+    font-size: 0.9em;
+}
+
+.shipping-details li {
+    margin-bottom: 8px;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.check-icon {
+    color: #00A98E; /* Icono de check en verde */
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+/* Características Plegables */
+.product-features-box {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    cursor: pointer; /* Indica que es interactivo */
+}
+
+.features-header {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.features-header h3 {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.toggle-icon {
+    font-size: 1.2em;
+    color: #333;
+    transform: rotate(180deg); /* Para que parezca una flecha hacia arriba (como en la foto) */
+    transition: transform 0.3s;
+}
+
+.features-content {
+    padding-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+    /* Para hacerlo realmente plegable, necesitarías JavaScript */
+}
+
+
+/* --- Media Query para Responsividad (Opcional, pero recomendado) --- */
+@media (max-width: 800px) {
+    .product-detail-layout {
+        flex-direction: column; /* En pantallas pequeñas, apila la galería y la información */
+    }
+}
