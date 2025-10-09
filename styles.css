@@ -1130,11 +1130,11 @@ h1, h2, h3, h4, h5, h6 {
   background-repeat: no-repeat;
   min-height: 90vh; /* 🔹 Aquí defines el alto de la sección */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: flex-start;
   color: #fff;
-  padding: 80px 20px;
+  padding: 80px 200px;
   overflow: hidden;
   font-family: "Roboto", sans-serif; /* 🔹 Fuente definida aquí */
 }
@@ -1157,9 +1157,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Logo */
 .pargatz-content img {
-  width: 300px; /* 🔹 Tamaño ajustado */
+  width: 280px; /* 🔹 Tamaño ajustado */
   margin-bottom: 25px;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
 }
 
 /* Textos */
@@ -1170,46 +1169,37 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.5px;
 }
 
-.pargatz-description {
-  font-size: 1rem;
-  font-weight: 300;
-  margin-bottom: 25px;
-  color: #ddd;
-}
-
-.pargatz-statement {
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
-
-.pargatz-question {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 25px 0;
-  color: #fff;
-}
-
-.pargatz-find {
-  font-size: 1.1rem;
-  margin-bottom: 25px;
-  color: #ddd;
-}
-
-.pargatz-essence {
-  font-size: 1.2rem;
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
 .pargatz-slogan {
-  font-size: 1rem;
-  font-weight: 300;
-  color: #f9f8f8;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+.banner-contenido {
+    background-color: var(--bg-color);
+    padding: 10px 10px; 
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start;
+    height: 70px; 
+    width: 1500px; 
+    font-size: 20px;
+    color: black;
+    animation-delay: 1.6s !important;
+    letter-spacing: 0px; 
 }
 
-/* Animación sutil */
+.banner-contenido img {
+    height: 100%; 
+    width: auto; 
+    margin: 0 10px; /* Un poco de espacio entre las imágenes y el texto */
+
+}
+
+.texto-marco {
+    margin: 0; 
+}
+
 .pargatz-content > * {
   opacity: 0;
   transform: translateY(20px);
@@ -1231,31 +1221,59 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .pargatz-section {
-    padding: 60px 15px;
-    min-height: 80vh;
-  }
+@media (max-width: 992px) {
+    .pargatz-section {
+        padding: 60px 50px; /* Reducimos el padding general */
+    }
+    
+    .pargatz-content {
+        max-width: 90%; /* Usamos más ancho disponible */
+    }
+    
+    /* Hacemos el banner más pequeño en pantallas medianas */
+    .banner-contenido {
+        height: 60px;
+        max-width: 3200px;
+        font-size: 18px;
+    }
 
-  .pargatz-content img {
-    width: 120px;
-  }
-
-  .pargatz-question {
-    font-size: 1.6rem;
-  }
-
-  .pargatz-statement {
-    font-size: 1.2rem;
-  }
-
-  .pargatz-tagline,
-  .pargatz-find {
-    font-size: 1rem;
-  }
+    .banner-contenido img {
+        height: 90%; /* Hacemos las imágenes un poco más pequeñas */
+        margin: 0 3px;
+    }
 }
 
+@media (max-width: 576px) {
+    .pargatz-section {
+        padding: 50px 20px; /* Padding ajustado para móviles pequeños */
+        min-height: 70vh;
+    }
+    
+    /* Ajustes de tamaño de fuente para mejor lectura en móvil */
+    .pargatz-tagline {
+        font-size: 1rem;
+    }
+    .pargatz-slogan {
+        font-size: 1.2rem;
+    }
+
+    /* Reducimos el tamaño de la franja blanca para móviles */
+    .banner-contenido {
+        height: 45px;
+        max-width: 100%; /* Ocupa todo el ancho disponible */
+        font-size: 14px; /* Hacemos el texto más pequeño */
+        padding: 5px 0;
+    }
+    
+    .banner-contenido img {
+        height: 100%;
+        margin: 0 2px; /* Espacio mínimo */
+    }
+    
+    .pargatz-content img {
+        width: 150px;
+    }
+}
 /* ==========================
   MAPA
 ========================== */
